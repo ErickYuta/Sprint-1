@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro ParkWise</title>
+</head>
+<body>
+    <h5>Escreva a quantidade de vagas do seu estacionamento</h5>
+    <input type="number" id="input_vagas">
+    <h5>Escreva em média a quantidade de vagas não ocupadas em um dia</h5>
+    <input type="number" id="input_vagasOFF">
+    <h5>Escreva o preço base antes da primeira hora</h5>
+    <input type="number" id="input_precoBASE">
+    <h5>Escreva quanto seu estacionamento cobra por hora</h5>
+    <input type="number" id="input_precoHORA">
+    
+    <button onclick="simular()">Simule Agora</button>
+
+    <div id="div_result"></div>
+</body>
+</html>
+<script>
+    
+    function simular(){
+        var vagas = Number(input_vagas.value);
+        var vagasOFF = Number(input_vagasOFF.value);
+        var precoHORA = Number(input_precoHORA.value);
+        var precoBASE = Number(input_precoBASE.value); 
+
+        var porcentVaga = (vagasOFF * 100) / vagas;
+        var prejuizo = (vagasOFF*precoBASE) + (vagasOFF * (precoHORA * 2));
+
+        div_result.innerHTML = `Seu estacionamento está sendo inútilizado em ${porcentVaga.toFixed(2)}%<br>
+        Seu prejuízo está sendo de R$${prejuizo}`;
+    }
+
+</script>
