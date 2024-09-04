@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h1>Simulador Financeiro - ParkWise</h1> 
+    <p>Digite a capacidade total do estacionamento: </p>
+    <input type="number" id="ipt_capacidadeTotal">
+    <p>Digite a média de quantidade de vagas ocupadas: </p>
+    <input type="number" id="ipt_vagasOcupadas">
+    <p>Digite o preço por hora: </p>
+    <input type="number" id="ipt_preco_hora">
+    <p>Digite o preço para adicionar por hora </p>
+    <input type="number" id="ipt_precoAdicional"> <br> <br>
+    <button onclick="simular()">Simular agora!</button> 
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    // 3 horas diárias por vaga
+    function simular(){
+        var capacidade = Number(ipt_capacidadeTotal.value); // 20
+        var vagasOcupadas = Number(ipt_vagasOcupadas.value); // 12
+        var preco = Number(ipt_preco_hora.value); // 20
+        var precoAdicional = Number(ipt_precoAdicional.value) // 10 
+        
+        var vagasLivres = capacidade - vagasOcupadas; // 8
+
+        var valor3Horas = preco + precoAdicional * 2;
+        var valorOcupado = vagasOcupadas * valor3Horas * 8;
+        var valorLivre = vagasLivres * valor3Horas * 8;
+
+        var lucro = valorOcupado - valorLivre;
+        var lucroSemanal = lucro * 7;
+        var lucroMensal = lucro * 30;
+
+        div_mensagem.innerHTML = 
+        `
+        <br> <br>
+        O Estacionamento tem capacidade total de ${capacidade}, cobrando R$${preco} por hora e com adicional de R$${precoAdicional} por hora <br>
+        <p style = "color:green;">Vagas Ocupadas: ${vagasOcupadas} </p>
+        <p style = "color:red;">Vagas Livres: ${vagasLivres} </p>
+        <p style = "color:green;">Receita: R$${valorOcupado}</p>
+        <p style = "color:red;">Prejuízo: R$${valorLivre}</p>
+
+        Lucro Diário:  R$${lucro} <br>
+        Lucro Semanal: R$${lucroSemanal} <br>
+        Lucro Mensal:  R$${lucroMensal} <br>
+        `
+    }
+</script>
