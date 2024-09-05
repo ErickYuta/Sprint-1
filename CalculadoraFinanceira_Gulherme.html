@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <!-- Calculo por hora: Média de quantos carros ficam parados por hora no dia e gerar uma média baseado nisso -->
+    <!-- Valor X (ex.: R$25,00) durante semana (ficticio com juros de 50% a partir da primeira hora para as horas adicionais) das 7h as 18h = R$25,00; depois das 18h até as 7h = R$15,00 (sem juros adicional) -->
+    <!-- valor fixo aos finais de semana ex.: R$50,00 --> 
+    <!-- Zona Leste é uma região nobre, então da pra colocar o valor mais elevado  -->
+    <!-- Simule Aqui -->
+    <!-- Colocar a calculadora no github do projeto -->
+
+    Informe a quantidade total de vagas: <br>
+    <input id="ipt_qtd_de_Vagas"><br>
+
+    Informe a quantidade média de carros estacionados: <br>
+    <input id="ipt_qtd_media_de_carros"> <br>
+
+    Informe o valor da primeira hora: <br>
+    <input id="ipt_valor_primeira_hora"> <br>
+
+    <button  onclick="Simular()">Simular</button>
+    <div id="div_msg"></div>
+
+</body>
+</html>
+<script>
+    function Simular(){
+        var Vagas = Number(ipt_qtd_de_Vagas.value); // quantidade de vagas
+        var Carros = Number(ipt_qtd_media_de_carros.value); // quantidade de carros
+        var PrimeiraHora = Number(ipt_valor_primeira_hora.value); // valor da primeira hora
+
+        var carrosporcento = (Carros / Vagas) * 100;
+        var juros = (PrimeiraHora * 0.5); // o preço do juros é a metade do valor do preço original.
+        var VagasOcupadas = Vagas - Carros; // vagas ocupadas
+        var VagaLivre = -(Carros - Vagas); // vagas livres
+        
+        // assumimos que uma vaga pode ficar até por 8h vazia
+        var VagaVazia = 8;
+
+        var PrecoDiurno = juros * 14; // o estacionamento funciona com o juros durante 14 horas (das 6h atá as 20h)
+
+        var PrecoNoturno = (PrimeiraHora * 0.70) * 10; // o preço durante a noite é 70% do valor original e multiplicamos pela quantidade de horas que ele ficará nesse estado (das 20h ate as 6h).
+        
+        var total = PrecoDiurno + PrecoNoturno; // valor total de uma vaga ocupada durante 24h.
+
+        var lucro = VagasOcupadas + PrecoDiurno + PrecoNoturno
+
+        var prejuizo = lucro - VagaLivre 
+
+        div_msg.innerHTML = `A quantidade de carros estacionados é de ${carrosporcento}% , e tendo o preço da primeira hora de R$${PrimeiraHora} e com juros adicional em cada hora de R$${juros} o lucro é de R$${lucro} <br>
+        
+        Porém com o total de ${VagaLivre} vagas vazias o prejuizo pode chegar até R$${prejuizo}`
+
+
+        
+    }
+</script>
