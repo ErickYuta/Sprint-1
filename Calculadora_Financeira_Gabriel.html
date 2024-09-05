@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+<body>
+    <h1>Simulador Financeiro - ParkWise</h1><br>
+    Digite o número de vagas totais de seu estacionamento:<br>
+    <input type="number" id="input_vagaTotal"><br>
+    Digite a quantidade de quantas vagas ficam ocupadas em média:<br>
+    <input type="number" id="input_vagasOcupadas"><br>
+    Digite o preço da primeira hora:<br>
+    <input type="number" id="input_primeiraHora"><br>
+    Digite o preço da hora adicional:<br>
+    <input type="number" id="input_hrAdicional"><br><br>
+
+    <button onclick="Simular()">Simular</button><br>
+    <div id="div_simulacao"></div><br>
+</body>
+</html>
+<script>
+    function Simular() {
+        var total = Number(input_vagaTotal.value);
+        var ocupadas = Number(input_vagasOcupadas.value);
+        var primeiraHora = Number(input_primeiraHora.value);
+        var adicional = Number(input_hrAdicional.value);
+
+        var vagasDesocupadas = total - ocupadas;
+        var precoMedio = primeiraHora + adicional * 2;
+        var precoVazias = vagasDesocupadas * precoMedio * 8;
+
+        var receitaDia = ocupadas * precoMedio * 8;
+        var receitaSemana = receitaDia * 7;
+        var receitaMes = receitaDia * 30;
+
+        var prejuizoSemana = precoVazias * 7;
+        var prejuizoMes = precoVazias * 30;
+
+        div_simulacao.innerHTML = `<br>Hoje, sua receita foi de R$${receitaDia}<br>Você teve um prejuizo de R$${precoVazias} com uma média de
+        ${vagasDesocupadas} vagas sem ocupação.<br>Em uma semana seu prejuizo será de R$${prejuizoSemana}<br>
+        Em um mês será de R$${prejuizoMes}<br>`;
+
+        div_simulacao.innerHTML += `<br>Com a nossa ajuda, podemos ajudar seu negócio a reduzir seu prejuizo em até 60%!<br><br>
+        Em uma nova simuação, com nossa ajuda, ficará assim:<br><br>
+        Prejuizo do dia: R$${precoVazias * 0.4}<br>Prejuizo da semana: R$${prejuizoSemana * 0.4}<br>Prejuizo do mês: R$${prejuizoMes * 0.4} `;
+
+    }
+</script>
