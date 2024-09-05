@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h1>Calculadora Financeira</h1><br>
+    Isso é apenas um simulação, não tome como verdade absoluta mas sim como uma aproximação da realidade.
+    <br>
+    <br>
+    Insira a quantidade de vagas do seu estacionamento:
+    <input type="number" id="input_vagas"><br>
+    Insira o preço por hora do seu estacionamento:
+    <input type="number" id="input_preco"><br>
+    Insira o por hora adicional:
+    <input type="number" id="input_adicional"><br>
+    Insira o horário de abertura do estacionamento:
+    <input type="number" id="input_abertura"><br>
+    Insira o horário de fechamento do estacionamento:
+    <input type="number" id="input_fechamento"><br>
+    Abre fim de semana(sim ou não):
+    <input type="text" id="input_fimSemana"><br>
+    <button onclick="simular()">Simular</button>
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+
+<script>
+
+    function simular(){
+        var vagas = Number(input_vagas.value);
+        var preco = Number(input_preco.value);
+        var adicional = Number(input_preco.value);
+        var abertura = Number(input_abertura.value);
+        var fechamento = Number(input_fechamento.value);
+        var cargahoraria = fechamento - abertura;
+        var receitaDiaria = preco * vagas * 0.85 * cargahoraria;
+        var custoDiario = preco* vagas  * 0.15 * cargahoraria;
+        var precoFimdeSemana = preco * 140/100;
+        var fimSemana = input_fimSemana.value;
+        if (precoFimdeSemana > 40){
+            precoFimdeSemana = 40;
+        }
+        var precoNoite = preco/2;
+        var precoRuim = preco * 65/100;
+        if (precoRuim < 15){
+            precoRuim = 15;
+        }
+        div_mensagem.innerHTML = `A sua receita diaria ideal é de R$${receitaDiaria}, o seu custo diário ideal é de R$${custoDiario}.<br>
+                                  O seu lucro é de R$${receitaDiaria - custoDiario}<br>`;
+        if (fechamento > 18){
+            div_mensagem.innerHTML += `O preço recomendado para o período noturno(após as 18 horas) é ${precoNoite}, sem adição de custo por hora.<br>`;
+        }
+        if (fimSemana == 'sim'){
+            div_mensagem.innerHTML += `O preço recomendado para os fins de semana é de R$${precoFimdeSemana}.<br>`;
+        }
+    }
+
+</script>
