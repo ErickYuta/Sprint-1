@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora financeira</h1> <br>
+
+    Insira a quantidade de vagas do estacionamento: <input type="number" id="iptQtdVagas"> <br>
+
+    Insira o valor cobrado por hora: <input type="number" id="iptValorHora"> <br>
+
+    Insira quantos dias por semana o estacionamento fica aberto: <input type="number" id="iptDiasAberto" min="1" max="7"> <br>
+
+    Insira quantas horas o estacionamento fica aberto por dia: <input type="number" id="iptHorasAberto" min="1" max="24"> <br>
+
+    <button onclick="calcular()">Calcular</button> <br>
+
+    <div id="divResultadoCalculadora"></div> <br>
+
+</body>
+</html>
+<script>
+    function calcular() {
+        var qtdVagas = Number(iptQtdVagas.value)
+        var valorHora = Number(iptValorHora.value)
+        var diasAberto = Number(iptDiasAberto.value)
+        var horasAberto = Number(iptHorasAberto.value)
+
+        var ganhoMensalFixo = ((diasAberto * horasAberto) * valorHora) * qtdVagas
+        
+        divResultadoCalculadora.innerHTML = `<p>Lucro semanal com valor da vaga fixo: R$ ${ganhoMensalFixo}</p>`
+
+        var valorFluxo = 0.2;
+        var horasPico = horasAberto - (horasAberto - 6)
+        var ganhoMensalVariavel = ganhoMensalFixo + ((diasAberto * horasPico) * (valorHora + (valorHora * valorFluxo))) * qtdVagas
+
+        divResultadoCalculadora.innerHTML += `<p>Lucro semanal com valor da vaga aumentando 20% nos horários de pico: R$ ${ganhoMensalVariavel}</p>`
+
+        divResultadoCalculadora.innerHTML += `<p>Insira outras porcentagens para realizar o cálculo: <input type="number" id="iptOutraPor"></p> <br>
+        <button onclick="calculo2()">Calcular</button>`
+    }
+
+    function calculo2() {
+        var qtdVagas = Number(iptQtdVagas.value)
+        var valorHora = Number(iptValorHora.value)
+        var diasAberto = Number(iptDiasAberto.value)
+        var horasAberto = Number(iptHorasAberto.value)
+        var outraPor = Number(iptOutraPor.value) / 100
+        var ganhoMensalFixo = ((diasAberto * horasAberto) * valorHora) * qtdVagas
+        var horasPico = horasAberto - (horasAberto - 6)
+
+        divResultadoCalculadora.innerHTML += `<p>Valor com ${outraPor * 100}% de acréscimo nos horários de pico: ${ganhoMensalFixo + ((diasAberto * horasPico) * (valorHora + (valorHora * outraPor))) * qtdVagas}</p>`
+    }
+</script>
