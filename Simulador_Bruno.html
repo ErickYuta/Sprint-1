@@ -45,16 +45,17 @@
         no mês - R$${prejuizo * 30}`;
 
         var solucao = (vagas - vagasOFF) * (precoBASE * 1.4);
+        var final = (solucao - prejuizo);
         div_result.innerHTML += `
         <br>
         <br>
         <spam style="color: green;">Com a nossa solução você terá um lucro de :</spam>
         <br>
-        no dia R$${solucao},
+        no dia R$${final},
         <br>
-        na semana R$${solucao * 7},
+        na semana R$${final * 7},
         <br>
-        no mês R$${solucao * 30}`;
+        no mês R$${final * 30}`;
 
     }
 
