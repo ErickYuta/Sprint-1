@@ -14,8 +14,6 @@ void loop() { // inica a contagem das variáveis
 
   if (estadoSensor == LOW) {
     desativado = 0; // zera o valor de desativado quando sair um carro
-    ativado++; // incrementa o valor quando tem carro
-
     Serial.print("Separação:");
     Serial.print(separacao);
     Serial.print(p1);
@@ -24,10 +22,9 @@ void loop() { // inica a contagem das variáveis
     Serial.print(p1);
     Serial.print("Tempo Desativado:");
     Serial.println(desativado);
-
+    ativado++; // incrementa o valor quando tem carro
   } else {
     ativado = 0; // zera o valor do ativado
-    desativado--; // incrementa o valor quando não tem carro
     delay(1000);
     Serial.print("Separação:");
     Serial.print(separacao);
@@ -37,6 +34,7 @@ void loop() { // inica a contagem das variáveis
     Serial.print(p1);
     Serial.print("Tempo Desativado:");
     Serial.println(desativado);
+    desativado--; // incrementa o valor quando não tem carro
   }
 
   delay(1000); // cria um atraso de 1 segundo 1
