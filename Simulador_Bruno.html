@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador Financeiro ParkWise</title>
 </head>
-<body>
+<body style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white; background-color: black;">
+    <h1>Simulador Financeiro - ParkWise</h1>
     <h5>Escreva a quantidade de vagas do seu estacionamento</h5>
     <input type="number" id="input_vagas">
     <h5>Escreva em média a quantidade de vagas não ocupadas em um dia</h5>
@@ -29,10 +30,32 @@
         var precoBASE = Number(input_precoBASE.value); 
 
         var porcentVaga = (vagasOFF * 100) / vagas;
-        var prejuizo = (vagasOFF*precoBASE) + (vagasOFF * (precoHORA * 2));
+        var prejuizo = (vagasOFF*precoBASE);
 
-        div_result.innerHTML = `Seu estacionamento está sendo inútilizado em ${porcentVaga.toFixed(2)}%<br>
-        Seu prejuízo está sendo de R$${prejuizo}`;
+        div_result.innerHTML = `
+        <br>
+        Seu estacionamento está sendo inútilizado em ${porcentVaga.toFixed(2)}%
+        <br>
+        <spam style="color: red;">Sua falta de lucro está sendo de :</spam>
+        <br>
+        no dia - R$${prejuizo},
+        <br>
+        na semana - R$${prejuizo * 7},
+        <br>
+        no mês - R$${prejuizo * 30}`;
+
+        var solucao = (vagas - vagasOFF) * (precoBASE * 1.4);
+        div_result.innerHTML += `
+        <br>
+        <br>
+        <spam style="color: green;">Com a nossa solução você terá um lucro de :</spam>
+        <br>
+        no dia R$${solucao},
+        <br>
+        na semana R$${solucao * 7},
+        <br>
+        no mês R$${solucao * 30}`;
+
     }
 
 </script>
