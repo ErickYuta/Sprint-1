@@ -31,26 +31,26 @@
 </html>
 
 <script>
-
     function simular(){
         var vagas = Number(input_vagas.value);
         var preco = Number(input_preco.value);
         var adicional = Number(input_preco.value);
-
-        // var abertura = Number(input_abertura.value);
-        // var fechamento = Number(input_fechamento.value);
-        // var cargahoraria = fechamento - abertura;
-
-        var receitaDiaria = preco * vagas * 0.85;
-        var custoDiario = preco * vagas  * 0.15;
-        var precoFimdeSemana = preco * 140/100;
+        var abertura = Number(input_abertura.value);
+        var fechamento = Number(input_fechamento.value);
+        
         var fimSemana = input_fimSemana.value;
+        
+        var cargahoraria = fechamento - abertura;
+        var receitaDiaria = preco * vagas * 0.85 * cargahoraria;
+        var custoDiario = preco * vagas  * 0.15 * cargahoraria;
+        var precoFimdeSemana = preco * 140 / 100;
+        
         if (precoFimdeSemana > 40){
             precoFimdeSemana = 40;
         }
-
-        var precoNoite = preco/2;
-        var precoRuim = preco * 65/100;
+        var precoNoite = preco / 2;
+        var precoRuim = preco * 65 / 100;
+        
         if (precoRuim < 15){
             precoRuim = 15;
         }

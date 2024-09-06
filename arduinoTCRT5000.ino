@@ -39,5 +39,5 @@ void loop() { // inica a contagem das variáveis
     Serial.println(desativado);
   }
 
-  delay(1000); // cria um atraso de 1 segundo
+  delay(1000); // cria um atraso de 1 segundo 1
 }
