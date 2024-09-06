@@ -16,10 +16,12 @@
     <input type="number" id="input_preco"><br>
     Insira o por hora adicional:
     <input type="number" id="input_adicional"><br>
-    Insira o horário de abertura do estacionamento:
-    <input type="number" id="input_abertura"><br>
-    Insira o horário de fechamento do estacionamento:
-    <input type="number" id="input_fechamento"><br>
+
+    <!-- Insira o horário de abertura do estacionamento: -->
+    <!-- <input type="number" id="input_abertura"><br> -->
+    <!-- Insira o horário de fechamento do estacionamento: -->
+    <!-- <input type="number" id="input_fechamento"><br> -->
+     
     Abre fim de semana(sim ou não):
     <input type="text" id="input_fimSemana"><br>
     <button onclick="simular()">Simular</button>
@@ -52,11 +54,12 @@
         if (precoRuim < 15){
             precoRuim = 15;
         }
+
+        
         div_mensagem.innerHTML = `A sua receita diaria ideal é de R$${receitaDiaria}, o seu custo diário ideal é de R$${custoDiario}.<br>
-                                  O seu lucro é de R$${receitaDiaria - custoDiario}<br>`;
-        if (fechamento > 18){
-            div_mensagem.innerHTML += `O preço recomendado para o período noturno(após as 18 horas) é ${precoNoite}, sem adição de custo por hora.<br>`;
-        }
+        O seu lucro é de R$${receitaDiaria - custoDiario}<br>`;
+        div_mensagem.innerHTML += `O preço recomendado para o período noturno(após as 18 horas) é ${precoNoite}, sem adição de custo por hora.<br>`;
+        
         if (fimSemana == 'sim'){
             div_mensagem.innerHTML += `O preço recomendado para os fins de semana é de R$${precoFimdeSemana}.<br>`;
         }
