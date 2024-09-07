@@ -35,14 +35,11 @@
         var vagas = Number(input_vagas.value);
         var preco = Number(input_preco.value);
         var adicional = Number(input_preco.value);
-        var abertura = Number(input_abertura.value);
-        var fechamento = Number(input_fechamento.value);
         
         var fimSemana = input_fimSemana.value;
         
-        var cargahoraria = fechamento - abertura;
-        var receitaDiaria = preco * vagas * 0.85 * cargahoraria;
-        var custoDiario = preco * vagas  * 0.15 * cargahoraria;
+        var receitaDiaria = preco * vagas * 0.85;
+        var custoDiario = preco * vagas  * 0.15;
         var precoFimdeSemana = preco * 140 / 100;
         
         if (precoFimdeSemana > 40){
