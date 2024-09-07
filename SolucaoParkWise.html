@@ -6,28 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Financeira</title>
 </head>
-<<<<<<< HEAD
-
-<body
-    style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white; background-color: black;">
+<body>
     <h1>Simulador Financeiro - ParkWise</h1>
     <p>Isso é apenas um simulação, não tome como verdade absoluta mas sim como uma aproximação da realidade.</p>
     <h3>Digite a capacidade total do estacionamento: </h3>
-=======
-<body>
-    <h1>Simulador Financeiro - ParkWise</h1> 
-    <p>Digite a capacidade total do estacionamento: </p>
->>>>>>> c4850f55c30442873793c459111c2132482df25b
-    <input type="number" id="ipt_capacidadeTotal">
-    <h3>Digite a média de quantidade de vagas ocupadas: </h3>
-    <input type="number" id="ipt_vagasOcupadas">
-    <h3>Digite o preço por hora: </h3>
-    <input type="number" id="ipt_preco_hora">
-    <h3>Digite o preço para adicionar por hora </h3>
-    <input type="number" id="ipt_precoAdicional"> <br> <br>
-    <button onclick="simular()">Simular agora!</button>
-    <div id="div_mensagem"></div>
-</body>
+    =======
+
+    <body>
+        <h1>Simulador Financeiro - ParkWise</h1>
+        <p>Digite a capacidade total do estacionamento: </p>
+        >>>>>>> c4850f55c30442873793c459111c2132482df25b
+        <input type="number" id="ipt_capacidadeTotal">
+        <h3>Digite a média de quantidade de vagas ocupadas: </h3>
+        <input type="number" id="ipt_vagasOcupadas">
+        <h3>Digite o preço por hora: </h3>
+        <input type="number" id="ipt_preco_hora">
+        <h3>Digite o preço para adicionar por hora </h3>
+        <input type="number" id="ipt_precoAdicional"> <br> <br>
+        <button onclick="simular()">Simular agora!</button>
+        <div id="div_mensagem"></div>
+    </body>
 
 </html>
 <script>
@@ -63,17 +61,17 @@
         Lucro Mensal:  R$${lucroMensal} <br>
         <br>
         `
-        if(receita <= prejuizo){
-             //diminuir o preço em 30% p/ aumentar em 50% a taxa de ocupação
-        var solucao = preco * 0.3;
-        var vagaNova = vagasOcupadas * 1.50;
-        var finalVaga = vagaNova - capacidade;
+        if (receita <= prejuizo) {
+            //diminuir o preço em 30% p/ aumentar em 50% a taxa de ocupação
+            var solucao = preco * 0.3;
+            var vagaNova = vagasOcupadas * 1.50;
+            var finalVaga = vagaNova - capacidade;
 
-        valor3Horas = solucao + precoAdicional * 2;
-        receita = vagaNova * valor3Horas * 8;
+            valor3Horas = solucao + precoAdicional * 2;
+            receita = vagaNova * valor3Horas * 8;
 
-        var valorDescontado = receita * 0.75 * 1.65;
-        var aumentoValor = ((valorDescontado * 100) / receita) - 100;
+            var valorDescontado = receita * 0.75 * 1.65;
+            var aumentoValor = ((valorDescontado * 100) / receita) - 100;
 
             prejuizo = finalVaga * manutencao * preco;
             var ajusteFinal = valorDescontado - prejuizo;
