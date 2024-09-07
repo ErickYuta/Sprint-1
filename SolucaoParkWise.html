@@ -53,17 +53,18 @@
         Lucro Mensal:  R$${lucroMensal} <br>
         <br>
         `
-
-        var valorDescontado = receita * 0.75 * 1.65;
-        var aumentoValor = ((valorDescontado * 100) / receita) - 100;
-        
-
        
         if(receita <= prejuizo){
              //diminuir o preço em 30% p/ aumentar em 50% a taxa de ocupação
         var solucao = preco * 0.3;
         var vagaNova = vagasOcupadas * 1.50;
-        var finalVaga = vagaNova - vagasLivres;
+        var finalVaga = vagaNova - capacidade;
+
+        valor3Horas = solucao + precoAdicional * 2;
+        receita = vagaNova * valor3Horas * 8;
+
+        var valorDescontado = receita * 0.75 * 1.65;
+        var aumentoValor = ((valorDescontado * 100) / receita) - 100;
 
         prejuizo = finalVaga * manutencao * preco;
         var ajusteFinal = valorDescontado - prejuizo;
