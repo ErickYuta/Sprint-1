@@ -35,7 +35,7 @@
         var valorParaCadaCarro = preco + precoAdicional * 2; // estimativa de 3 horas diárias por carro em cada vaga
         var receita = vagasOcupadas * valorParaCadaCarro * 8; // receita do estacionamento gerado por cada vaga
 
-        var manutencao = preco * 0.3; // manutenção dos sensores é 30% do preço para cada carro
+        var manutencao = preco * 30 / 100; // manutenção dos sensores é 30% do preço para cada carro
         var prejuizo = vagasLivres * manutencao * preco; //prejuízo para cada vaga livre no estacionamento 
 
         var lucro = receita - prejuizo; // lucro diário(constante)
@@ -43,8 +43,8 @@
         var lucroMensal = lucro * 30; // lucro mensal(constante)
 
         div_mensagem.innerHTML =
-            `
-        <br> <br>
+        `
+        <br><br>
         O Estacionamento tem capacidade total de ${capacidade}, cobrando R$${preco} por hora e com adicional de R$${precoAdicional} por hora <br>
         <p style = "color:green;">Vagas Ocupadas: ${vagasOcupadas} </p>
         <p style = "color:green;">Receita: R$${receita}</p>
@@ -56,31 +56,34 @@
         Lucro Mensal:  R$${lucroMensal} <br>
         <br>
         `
+
         if (receita <= prejuizo) {
-            //diminuir o preço em 30% p/ aumentar em 50% a taxa de ocupação
-            var solucao = preco * 0.3;
-            var vagaNova = vagasOcupadas * 1.50;
-            var finalVaga = vagaNova - capacidade;
+            //Diminuir o preço em 50% e aumentar o preco adicional em 200%
 
-            valor3Horas = solucao + precoAdicional * 2;
-            receita = vagaNova * valor3Horas * 8;
+            var diminuirPrecoDaHora = preco * 50 / 100; // Diminuir o preço da primeira hora
+            var aumentarPrecoAdicional = precoAdicional * 200 / 100; // Aumentar o preço adicional por hora
 
-            var valorDescontado = receita * 0.75 * 1.65;
-            var aumentoValor = ((valorDescontado * 100) / receita) - 100;
+            var vagasNovas = vagasOcupadas * 1.60; // Aumento de vagas ocupadas, por conta do ajuste do preço
+            var finalVaga = capacidade - vagasNovas; // Vagas livres depois do ajuste 
 
-            prejuizo = finalVaga * manutencao * preco;
-            var ajusteFinal = valorDescontado - prejuizo;
+            valorParaCadaCarro = diminuirPrecoDaHora + aumentarPrecoAdicional; // Valor para cada carro ajustado com o novo ajuste
+            var receitaNova = vagasNovas * valorParaCadaCarro * 8; // Receita gerada pelo novo ajuste
+
+            var receitaPorcentagem = ((receitaNova * 100) / receita) - 100; // Aumento em relação a receita antiga com a nova
+
+            prejuizo = finalVaga * manutencao * preco; // Prejuízo ajustado com as vagas novas livres
+            var receitaFinal = receitaNova - prejuizo; // Receita final pela diferença entre a receitaNova e o prejuízo
 
             div_mensagem.innerHTML +=
-                `
+            `
             Com o prejuizo de R$${lucroMensal} por mês ou a falta do lucro , diminua o preço da vaga por 
-            30% isso poderá aumentar o fluxo de clientes em 50%, gerando assim uma receita de ${valorDescontado} <br> <br>
+            50% e dobrar o preço adicional cobrado, gerando assim uma receita de ${receitaNova.toFixed(2)} <br> <br>
             
-            Com isso haverá um aumento de ${aumentoValor}% na receita
+            Com isso haverá um aumento de ${receitaPorcentagem.toFixed(2)}% na receita
             <br><br>
-            Lucro Diário:  R$${ajusteFinal} <br>
-            Lucro Semanal: R$${ajusteFinal * 7} <br>
-            Lucro Mensal:  R$${ajusteFinal * 30} <br>
+            Lucro Diário:  R$${receitaFinal.toFixed(2)} <br>
+            Lucro Semanal: R$${receitaFinal.toFixed(2) * 7} <br>
+            Lucro Mensal:  R$${receitaFinal.toFixed(2) * 30} <br>
             
             `
         } else {
