@@ -57,24 +57,30 @@
         <br>
         `
 
-        if (receita <= prejuizo) {
+        if (lucro <= 0) {
             //Diminuir o preço em 50% e aumentar o preco adicional em 200%
 
             var diminuirPrecoDaHora = preco * 50 / 100; // Diminuir o preço da primeira hora
             var aumentarPrecoAdicional = precoAdicional * 200 / 100; // Aumentar o preço adicional por hora
 
             var vagasNovas = vagasOcupadas * 1.60; // Aumento de vagas ocupadas, por conta do ajuste do preço
-            var finalVaga = capacidade - vagasNovas; // Vagas livres depois do ajuste 
+            var vagasLivres2 = capacidade - vagasNovas; // Vagas livres depois do ajuste 
 
-            valorParaCadaCarro = diminuirPrecoDaHora + aumentarPrecoAdicional; // Valor para cada carro ajustado com o novo ajuste
+            valorParaCadaCarro = diminuirPrecoDaHora + aumentarPrecoAdicional * 2; // Valor para cada carro ajustado com o novo ajuste
             var receitaNova = vagasNovas * valorParaCadaCarro * 8; // Receita gerada pelo novo ajuste
 
-            var receitaPorcentagem = ((receitaNova * 100) / receita) - 100; // Aumento em relação a receita antiga com a nova
-
-            prejuizo = finalVaga * manutencao * preco; // Prejuízo ajustado com as vagas novas livres
+            prejuizo = vagasLivres2 * manutencao * preco; // Prejuízo ajustado com as vagas novas livres
             var receitaFinal = receitaNova - prejuizo; // Receita final pela diferença entre a receitaNova e o prejuízo
-
-            div_mensagem.innerHTML +=
+            
+            var receitaPorcentagem = ((receitaFinal - lucro) / Math.abs(lucro)) * 100; // Aumento em relação a receita antiga com a nova
+            if (receitaFinal <= 0){
+                div_mensagem.innerHTML += `
+                Sua situação está crítica
+                <br><br>
+                Podemos te ajudar de forma gradual com a análise dos nossos gráficos
+                `;
+            }else{
+                div_mensagem.innerHTML +=
             `
             Com o prejuizo de R$${lucroMensal} por mês ou a falta do lucro , diminua o preço da vaga por 
             50% e dobrar o preço adicional cobrado, gerando assim uma receita de ${receitaNova.toFixed(2)} <br> <br>
@@ -85,7 +91,9 @@
             Lucro Semanal: R$${receitaFinal.toFixed(2) * 7} <br>
             Lucro Mensal:  R$${receitaFinal.toFixed(2) * 30} <br>
             
-            `
+            `;
+            }
+            
         } else {
             div_mensagem.innerHTML +=
                 `O seu lucro é R$${lucroMensal} por mês, continue assim!`
