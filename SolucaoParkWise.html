@@ -43,17 +43,17 @@
         var lucroMensal = lucro * 30; // lucro mensal(constante)
 
         div_mensagem.innerHTML =
-        `
+            `
         <br><br>
-        O Estacionamento tem capacidade total de ${capacidade}, cobrando R$${preco} por hora e com adicional de R$${precoAdicional} por hora <br>
-        <p style = "color:green;">Vagas Ocupadas: ${vagasOcupadas} </p>
-        <p style = "color:green;">Receita: R$${receita}</p>
-        <p style = "color:red;">Vagas Livres: ${vagasLivres} </p>
-        <p style = "color:red;">Prejuízo: R$${prejuizo}</p>
+        O Estacionamento tem capacidade total de ${capacidade} vagas, cobrando R$${preco} por hora e com adicional de R$${precoAdicional} por hora <br>
+        <p style = "color:green;"><b>Vagas Ocupadas: ${vagasOcupadas} </b></p>
+        <p style = "color:green;"><b>Receita: R$${receita}</b></p>
+        <p style = "color:red;"><b>Vagas Livres: ${vagasLivres} </b></p>
+        <p style = "color:red;"><b>Prejuízo: R$${prejuizo}</b></p>
 
-        Lucro Diário:  R$${lucro} <br>
-        Lucro Semanal: R$${lucroSemanal} <br>
-        Lucro Mensal:  R$${lucroMensal} <br>
+        Lucro Diário:  <b>R$${lucro}</b> <br>
+        Lucro Semanal: <b>R$${lucroSemanal}</b> <br>
+        Lucro Mensal:  <b>R$${lucroMensal}</b> <br>
         <br>
         `
 
@@ -67,36 +67,42 @@
             var vagasLivres2 = capacidade - vagasNovas; // Vagas livres depois do ajuste 
 
             valorParaCadaCarro = diminuirPrecoDaHora + aumentarPrecoAdicional * 2; // Valor para cada carro ajustado com o novo ajuste
-            var receitaNova = vagasNovas * valorParaCadaCarro * 8; // Receita gerada pelo novo ajuste
+            prejuizo = vagasLivres2 * manutencao * 24; // Atualizando o prejuízo com as novas vagas livres
 
-            prejuizo = vagasLivres2 * manutencao * preco; // Prejuízo ajustado com as vagas novas livres
+            var receitaNova = vagasNovas * valorParaCadaCarro * 8; // Receita gerada pelo novo ajuste
             var receitaFinal = receitaNova - prejuizo; // Receita final pela diferença entre a receitaNova e o prejuízo
+
+            var lucroPorcentagem = ((receitaFinal - lucro) / Math.abs(lucro)) * 100; // Aumento em relação a receita antiga com a nova
+            var receitaPorcentagem = ((receitaNova - receita) / Math.abs(receita) * 100); // Aumento em relação a receita antiga com a nova
             
-            var receitaPorcentagem = ((receitaFinal - lucro) / Math.abs(lucro)) * 100; // Aumento em relação a receita antiga com a nova
-            if (receitaFinal <= 0){
-                div_mensagem.innerHTML += `
-                Sua situação está crítica
-                <br><br>
-                Podemos te ajudar de forma gradual com a análise dos nossos gráficos
-                `;
-            }else{
-                div_mensagem.innerHTML +=
-            `
-            Com o prejuizo de R$${lucroMensal} por mês ou a falta do lucro , diminua o preço da vaga por 
-            50% e dobrar o preço adicional cobrado, gerando assim uma receita de ${receitaNova.toFixed(2)} <br> <br>
-            
-            Com isso haverá um aumento de ${receitaPorcentagem.toFixed(2)}% na receita
+            if (receitaFinal <= 0) {
+                div_mensagem.innerHTML +=  
+                `
+            Sua situação está crítica
             <br><br>
+            Podemos te ajudar de forma gradual com a análise dos nossos gráficos
+                `;
+            } else {
+                div_mensagem.innerHTML +=
+                `
+            Com o prejuizo de <b style="color:red">R$${lucroMensal}</b> por mês ou a falta do lucro , diminua o preço da vaga por 
+            50% e dobrar o preço adicional cobrado, gerando assim uma receita de <b style="color:green">R$${receitaNova.toFixed(2)}</b> <br> <br>
+            
+            <p>Com isso haverá um aumento de <b style="color:green"> ${lucroPorcentagem.toFixed(2)}% </b> no lucro </p>  
+            
+            <p>E também um aumento de <b style="color:green"> ${receitaPorcentagem.toFixed(2)}% </b> na receita </p>            
+
+            <p style="color:green"><b>
             Lucro Diário:  R$${receitaFinal.toFixed(2)} <br>
             Lucro Semanal: R$${receitaFinal.toFixed(2) * 7} <br>
             Lucro Mensal:  R$${receitaFinal.toFixed(2) * 30} <br>
-            
-            `;
+            <b></p>
+                `;
             }
-            
+
         } else {
             div_mensagem.innerHTML +=
-                `O seu lucro é R$${lucroMensal} por mês, continue assim!`
+                `O seu lucro é <b>R$${lucroMensal}</b> por mês, continue assim!`
         }
     }
 </script>
