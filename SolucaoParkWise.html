@@ -36,7 +36,7 @@
         var receita = vagasOcupadas * valorParaCadaCarro * 8; // receita do estacionamento gerado por cada vaga
 
         var manutencao = preco * 30 / 100; // manutenção dos sensores é 30% do preço para cada carro
-        var prejuizo = vagasLivres * manutencao * preco; //prejuízo para cada vaga livre no estacionamento 
+        var prejuizo = vagasLivres * manutencao * 24; //prejuízo para cada vaga livre no estacionamento 
 
         var lucro = receita - prejuizo; // lucro diário(constante)
         var lucroSemanal = lucro * 7; // lucro semanal(constante)
