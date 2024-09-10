@@ -48,12 +48,14 @@
         O Estacionamento tem capacidade total de ${capacidade} vagas, cobrando R$${preco} por hora e com adicional de R$${precoAdicional} por hora <br>
         <p style = "color:green;"><b>Vagas Ocupadas: ${vagasOcupadas} </b></p>
         <p style = "color:green;"><b>Receita Diária: R$${receita}</b></p>
+        <p style = "color:green;"><b>Receita Semanal: R$${receita * 7}</b></p>
+        <p style = "color:green;"><b>Receita Mensal: R$${receita * 30}</b></p>
         <p style = "color:red;"><b>Vagas Livres: ${vagasLivres} </b></p>
-        <p style = "color:red;"><b>Receita Potencial: R$${lucroPotencial}</b></p>
+        <p style = "color:red;"><b>Receita Potencial Diária: R$${lucroPotencial}</b></p>
         <h4>Utilizando a solução da ParkWise, sua nova simulação ficará assim:</h4>
-        Receita Diária:  <b>R$${receita + (lucroPotencial * 0.4)}</b> <br><br>  
-        Receita Semanal: <b>R$${(receita * 7) + (lucroPotencial * 7 * 0.4)}</b> <br><br>
-        Receita Mensal:  <b>R$${(receita * 30) + (lucroPotencial * 30 * 0.4)}</b> <br><br>
+        Nova Receita Diária:  <b>R$${receita + (lucroPotencial * 0.4)}</b> <br><br>  
+        Nova Receita Semanal: <b>R$${(receita * 7) + (lucroPotencial * 7 * 0.4)}</b> <br><br>
+        Nova Receita Mensal:  <b>R$${(receita * 30) + (lucroPotencial * 30 * 0.4)}</b> <br><br>
         <br>
         `
     }
