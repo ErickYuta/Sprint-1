@@ -28,7 +28,7 @@
         var capacidade = Number(ipt_capacidadeTotal.value); // capacidade total do estacionamento
         var preco = Number(ipt_preco_hora.value);  // preço por hora cobrado
         var precoAdicional = Number(ipt_precoAdicional.value)  // preço adicional para cada hora que passa
-        var vagasOcupadas = Number(ipt_vagasOcupadas.value);  // vagas ocupdas no estacionemnto
+        var vagasOcupadas = Number(ipt_vagasOcupadas.value);  // vagas ocupadas no estacionemnto
 
         var vagasLivres = capacidade - vagasOcupadas; // vagas livres no estacionamento
 
@@ -50,10 +50,10 @@
         <p style = "color:green;"><b>Receita Diária: R$${receita}</b></p>
         <p style = "color:red;"><b>Vagas Livres: ${vagasLivres} </b></p>
         <p style = "color:red;"><b>Receita Potencial: R$${lucroPotencial}</b></p>
-
-        Receita Potencial Diário:  <b>R$${lucroPotencial}</b> <br>
-        Receita Potencial Semanal: <b>R$${lucroPotencial * 7}</b> <br>
-        Receita Potencial Mensal:  <b>R$${lucroPotencial * 30}</b> <br>
+        <h4>Utilizando a solução da ParkWise, sua nova simulação ficará assim:</h4>
+        Receita Potencial Diário:  <b>R$${lucroPotencial * 0.6}</b> <br>
+        Receita Potencial Semanal: <b>R$${lucroPotencial * 7 * 0.6}</b> <br>
+        Receita Potencial Mensal:  <b>R$${lucroPotencial * 30 * 0.6}</b> <br>
         <br>
         `
     }
