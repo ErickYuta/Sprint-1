@@ -51,9 +51,9 @@
         <p style = "color:red;"><b>Vagas Livres: ${vagasLivres} </b></p>
         <p style = "color:red;"><b>Receita Potencial: R$${lucroPotencial}</b></p>
         <h4>Utilizando a solução da ParkWise, sua nova simulação ficará assim:</h4>
-        Receita Potencial Diário:  <b>R$${lucroPotencial * 0.6}</b> <br>
-        Receita Potencial Semanal: <b>R$${lucroPotencial * 7 * 0.6}</b> <br>
-        Receita Potencial Mensal:  <b>R$${lucroPotencial * 30 * 0.6}</b> <br>
+        Receita Diária:  <b>R$${receita + (lucroPotencial * 0.4)}</b> <br><br>  
+        Receita Semanal: <b>R$${(receita * 7) + (lucroPotencial * 7 * 0.4)}</b> <br><br>
+        Receita Mensal:  <b>R$${(receita * 30) + (lucroPotencial * 30 * 0.4)}</b> <br><br>
         <br>
         `
     }
